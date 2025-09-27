@@ -67,9 +67,9 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
         {/* Company Logo/Header */}
         <motion.div className="text-center" variants={itemVariants}>
           <div className="flex items-center justify-center mb-4">
-            <img src="/aidalogo.svg" alt="Aaida Corp" className="w-16 h-16 rounded-2xl moving-shadow" />
+            <img src="/aidalogo.svg" alt="AAIDA Corp" className="w-16 h-16 rounded-2xl moving-shadow" />
           </div>
-          <h1 className="text-4xl font-bold gradient-text mb-2">Aaida Corp</h1>
+          <h1 className="text-4xl font-bold gradient-text mb-2">AAIDA Corp</h1>
           <p className="text-lg text-gray-600 font-medium">Client Proposal Dashboard</p>
           <p className="text-sm text-gray-500 mt-2">Secure access to your personalized project details</p>
         </motion.div>
@@ -132,7 +132,7 @@ const LoginPage: React.FC<LoginPageProps> = ({ onLogin }) => {
 
         {/* Footer */}
         <motion.div className="text-center text-sm text-gray-500" variants={itemVariants}>
-          <p>Powered by Aaida Corp © 2025</p>
+          <p>Powered by AAIDA Corp © 2025</p>
           <p className="mt-1">Secure • Professional • Innovative</p>
         </motion.div>
       </motion.div>

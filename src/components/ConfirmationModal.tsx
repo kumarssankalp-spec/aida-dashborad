@@ -47,7 +47,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
         original_price: `₹${parseFloat(formData.price || '0').toLocaleString()}`,
         discount: formData.discount,
         final_price: `₹${parseFloat(calculateFinalPrice()).toLocaleString()}`,
-        from_name: 'Aaida Corp Team',
+        from_name: 'AAIDA Corp Team',
         message: `Dear ${formData.name}, thank you for confirming your project proposal. We will contact you shortly to discuss next steps.`
       };
 
