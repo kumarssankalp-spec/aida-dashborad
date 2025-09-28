@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiMail, FiUser, FiCheckCircle, FiSend, FiClock, FiCheck, FiMessageSquare, FiBriefcase, FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import emailjs from '@emailjs/browser';
@@ -34,6 +34,13 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSuccess, setIsSuccess] = useState(false);
   const [error, setError] = useState('');
+
+  useEffect(() => {
+    document.body.style.overflow = 'hidden';
+    return () => {
+      document.body.style.overflow = 'auto';
+    };
+  }, []);
 
   const calculateFinalPrice = () => {
     const basePrice = parseFloat(formData.price || '0');
@@ -84,12 +91,27 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
   };
 
   if (isSuccess) {
-    return (
-      <AnimatePresence>
+  return (
+    <>
+    <style>
+      {`
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 6px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background: #e0e0e0;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background: #555;
+          border-radius: 3px;
+        }
+      `}
+    </style>
+    <AnimatePresence>
         <motion.div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
           <motion.div initial={{ scale: 0.8, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.8, opacity: 0, y: 20 }} transition={{ type: 'spring', duration: 0.5 }}>
-            <Card className="bg-white shadow-xl border border-gray-200 max-w-md w-full mx-4">
-              <CardContent className="p-8 text-center">
+            <Card className="bg-white shadow-xl border border-gray-200 max-w-md mx-4">
+            <CardContent className="p-8 text-center max-h-[70vh] overflow-y-auto scrollbar-thin" style={{ scrollbarWidth: 'thin', scrollbarColor: '#555 #e0e0e0' }}>
                 <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 0.2, type: 'spring' }} className="w-20 h-20 bg-gradient-to-r from-[#8c52ff] to-[#8676e9] rounded-full flex items-center justify-center mx-auto mb-6">
                   <FiCheckCircle className="w-10 h-10 text-white" />
                 </motion.div>
@@ -114,6 +136,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
           </motion.div>
         </motion.div>
       </AnimatePresence>
+    </>
     );
   }
 
@@ -121,7 +144,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
     <AnimatePresence>
       <motion.div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center p-4 z-50" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} onClick={onClose}>
         <motion.div initial={{ scale: 0.8, opacity: 0, y: 20 }} animate={{ scale: 1, opacity: 1, y: 0 }} exit={{ scale: 0.8, opacity: 0, y: 20 }} transition={{ type: 'spring', duration: 0.5 }} onClick={(e) => e.stopPropagation()}>
-          <Card className="bg-gradient-to-br from-white to-[#f8f9fa] shadow-xl border border-gray-200 max-w-lg w-full mx-4">
+          <Card className="bg-gradient-to-br from-white to-[#f8f9fa] shadow-xl border border-gray-200 max-w-lg mx-4">
             <CardHeader className="pb-4">
               <div className="w-full bg-gray-200 rounded-full h-2 mb-4">
                 <div className="bg-[#8c52ff] h-2 rounded-full transition-all duration-300" style={{ width: `${(currentStep / 2) * 100}%` }}></div>
@@ -146,7 +169,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
               </div>
             </CardHeader>
 
-            <CardContent>
+            <CardContent className="max-h-[70vh] overflow-y-auto scrollbar-thin" style={{ scrollbarWidth: 'thin', scrollbarColor: '#555 #e0e0e0' }}>
               {error && <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg text-sm mb-6">{error}</motion.div>}
 
               {currentStep === 1 ? (
