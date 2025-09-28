@@ -11,6 +11,7 @@ import { getCurrentClient, logout } from '../config/auth';
 import { getClientProject } from '../data/clientData';
 import ConfirmationModal from './ConfirmationModal';
 import { Button } from './ui/button';
+import { PiDogBold } from "react-icons/pi";
 import { Card, CardHeader, CardContent } from './ui/card';
 
 interface DashboardProps {
@@ -75,26 +76,26 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
       </div>
 
       <motion.header
-        className="glassmorphism-card border-b border-white/20 p-4 sm:p-6 sticky top-0 z-50"
+        className="bg-gradient-to-r from-[#8c52ff]/10 via-[#8676e9]/15 to-[#c8e9f7]/10 backdrop-blur-md border-b border-white/30 p-4 sm:p-6 sticky top-0 z-50 shadow-lg"
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.6 }}
       >
         <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div className="flex items-center space-x-4">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl avatar-letter text-xl font-bold">
+            <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-[#8c52ff] to-[#8676e9] text-white text-xl font-bold flex items-center justify-center shadow-md">
               {getClientInitials(currentClient.name)}
             </div>
             <div>
-              <h1 className="text-xl sm:text-2xl font-bold gradient-text">Welcome, {currentClient.name}</h1>
-              <p className="text-sm sm:text-base text-gray-600">{currentClient.company} • Project Dashboard</p>
+              <h1 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-[#8c52ff] to-[#8676e9] bg-clip-text text-transparent">Welcome, {currentClient.name}</h1>
+              <p className="text-sm sm:text-base text-gray-700 font-medium">{currentClient.company} • Project Dashboard</p>
             </div>
           </div>
           <Button
             onClick={handleLogout}
             variant="outline"
             size="sm"
-            className="bg-white/20 border-black/30 hover:bg-red-50 hover:border-red-200 hover:text-red-600 transition-all duration-200"
+            className="bg-white/30 border-white/40 hover:bg-red-50 hover:border-red-200 hover:text-red-600 transition-all duration-200 shadow-sm"
           >
             <FiLogOut className="w-4 h-4 mr-2" />
             Logout
@@ -104,14 +105,16 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
 
       <motion.main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 space-y-6 sm:space-y-8" variants={containerVariants} initial="hidden" animate="visible">
         <motion.section variants={cardVariants}>
-          <Card className="glassmorphism-card moving-shadow">
+          <Card className="bg-gradient-to-br from-[#c8e9f7]/20 to-[#8676e9]/20 backdrop-blur-sm border border-white/30 moving-shadow">
             <CardContent className="p-6 sm:p-8">
               <div className="text-center max-w-4xl mx-auto">
                 <motion.div initial={{ scale: 0.9 }} animate={{ scale: 1 }} transition={{ duration: 0.5 }} className="flex items-center justify-center mb-4">
-                  <FiTarget className="w-8 h-8 text-[#8c52ff] pulse-icon" />
+                  <div className="w-16 h-16 bg-gradient-to-r from-[#8c52ff] to-[#8676e9] rounded-full flex items-center justify-center shadow-lg">
+                    <PiDogBold  className="w-8 h-8 text-white pulse-icon" />
+                  </div>
                 </motion.div>
-                <h2 className="text-3xl sm:text-4xl font-bold gradient-text mb-4">{projectData.title}</h2>
-                <p className="text-lg sm:text-xl text-gray-600 font-medium">{projectData.subtitle}</p>
+                <h2 className="text-3xl sm:text-4xl font-bold bg-gradient-to-r from-[#8c52ff] to-[#8676e9] bg-clip-text text-transparent mb-4">{projectData.title}</h2>
+                <p className="text-lg sm:text-xl text-gray-700 font-semibold">{projectData.subtitle}</p>
               </div>
             </CardContent>
           </Card>
@@ -133,9 +136,11 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {projectData.requirements.map((requirement, index) => (
-                  <motion.div key={index} className="flex items-start space-x-3 p-4 rounded-lg bg-white/30 border border-white/20" initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: index * 0.1 }}>
-                    <FiArrowRight className="w-5 h-5 text-[#8c52ff] mt-0.5 pulse-icon" />
-                    <span className="text-gray-700 font-medium">{requirement}</span>
+                  <motion.div key={index} className="flex items-start space-x-3 p-4 rounded-lg bg-gradient-to-r from-[#8676e9]/10 to-[#c8e9f7]/10 border border-[#8676e9]/30 shadow-sm" initial={{ x: -20, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: index * 0.1 }}>
+                    <div className="w-8 h-8 bg-gradient-to-r from-[#8676e9] to-[#c8e9f7] rounded-full flex items-center justify-center shadow-md">
+                      <FiArrowRight className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="text-gray-800 font-semibold">{requirement}</span>
                   </motion.div>
                 ))}
               </div>
@@ -329,9 +334,9 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {projectData.proposalDetails.features.map((feature, index) => (
-                    <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-white/20">
-                      <div className="w-6 h-6 bg-gradient-to-r from-[#8c52ff] to-[#8676e9] rounded-full flex items-center justify-center">
-                        <FiCheck className="w-4 h-4 text-white" />
+                    <div key={index} className="flex items-center space-x-3 p-4 rounded-lg bg-gradient-to-r from-[#099dc2]/10 to-[#c8e9f7]/10 border border-[#099dc2]/30">
+                      <div className="w-8 h-8 bg-gradient-to-r from-[#099dc2] to-[#c8e9f7] rounded-full flex items-center justify-center">
+                        <FiCheck className="w-5 h-5 text-white" />
                       </div>
                       <span className="text-gray-700 font-medium">{feature}</span>
                     </div>
@@ -344,35 +349,61 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                   <FiTarget className="w-5 h-5 text-[#8c52ff] mr-2" />
                   Deliverables
                 </h4>
-                <div className="space-y-2">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {projectData.proposalDetails.deliverables.map((deliverable, index) => (
-                    <div key={index} className="flex items-center space-x-3 p-3 rounded-lg bg-white/20 border border-white/30">
-                      <div className="w-6 h-6 bg-gradient-to-r from-[#ff914d] to-[#8c52ff] rounded-full flex items-center justify-center">
-                        <FiCheck className="w-4 h-4 text-white" />
-                      </div>
-                      <span className="text-gray-700 font-medium">{deliverable}</span>
+                    <div key={index} className={`flex items-center justify-between p-3 rounded-lg border ${
+                      deliverable.isPremium
+                        ? 'bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-400'
+                        : 'bg-white/20 border-black/30'
+                    }`}>
+                      <span className="text-gray-700 font-medium">{index + 1}. {deliverable.name}</span>
+                      {deliverable.isPremium && (
+                        <div className="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">
+                          Premium
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h4 className="text-lg font-bold text-gray-800 mb-4 flex items-center">
+                  <FiStar className="w-5 h-5 text-[#8c52ff] mr-2" />
+                  Special Requests
+                </h4>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {projectData.proposalDetails.specialRequests.map((request, index) => (
+                    <div key={index} className="p-4 rounded-lg bg-gradient-to-r from-[#ff914d]/10 to-[#8c52ff]/10 border border-[#ff914d]/30">
+                      <p className="text-gray-700 font-medium">{request}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-white/20">
-                  <FiMail className="w-5 h-5 text-[#8c52ff]" />
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-gradient-to-r from-[#8c52ff]/10 to-[#8676e9]/10 border border-[#8c52ff]/30">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#8c52ff] to-[#8676e9] rounded-full flex items-center justify-center">
+                    <FiMail className="w-5 h-5 text-white" />
+                  </div>
                   <div>
                     <p className="text-xs text-gray-500">Email</p>
                     <p className="font-medium text-gray-800">{currentClient.email}</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-white/20">
-                  <FiUser className="w-5 h-5 text-[#ff914d]" />
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-gradient-to-r from-[#ff914d]/10 to-[#8c52ff]/10 border border-[#ff914d]/30">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#ff914d] to-[#8c52ff] rounded-full flex items-center justify-center">
+                    <FiUser className="w-5 h-5 text-white" />
+                  </div>
                   <div>
                     <p className="text-xs text-gray-500">Contact</p>
                     <p className="font-medium text-gray-800">{currentClient.name}</p>
                   </div>
                 </div>
-                <div className="flex items-center space-x-3 p-4 rounded-lg bg-white/20">
-                  <FiMapPin className="w-5 h-5 text-[#8676e9]" />
+                <div className="flex items-center space-x-3 p-4 rounded-lg bg-gradient-to-r from-[#8676e9]/10 to-[#c8e9f7]/10 border border-[#8676e9]/30">
+                  <div className="w-10 h-10 bg-gradient-to-r from-[#8676e9] to-[#c8e9f7] rounded-full flex items-center justify-center">
+                    <FiMapPin className="w-5 h-5 text-white" />
+                  </div>
                   <div>
                     <p className="text-xs text-gray-500">Company</p>
                     <p className="font-medium text-gray-800">{currentClient.company}</p>
