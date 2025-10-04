@@ -362,6 +362,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
             { name: 'Frontend development (HTML/CSS/JS)', amount: 10000, free: false },
             { name: 'Premium responsive layout', amount: 2000, free: true },
             { name: 'Content management system setup', amount: 3000, free: true },
+            { name: 'MSME Certificate', amount: 3000, free: true },
             { name: 'Initial branding elements', amount: 3000, free: true }
           ]
         },
