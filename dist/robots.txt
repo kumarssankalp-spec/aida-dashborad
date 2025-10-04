@@ -1,0 +1,5 @@
+User-agent: *
+Disallow:
+
+Sitemap: https://dashboard.aidacorp.in//sitemap.xml
+Host: https://dashboard.aidacorp.in/
