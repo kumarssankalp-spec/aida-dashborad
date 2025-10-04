@@ -251,6 +251,17 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
               </div>
             </div>
           </div>
+          
+          {/* Center Section: Update Notice */}
+          <div className="flex-1 text-center">
+            <div className="inline-block px-4 py-2 rounded-lg bg-white border border-gray-300 shadow-sm">
+              <div className="text-sm font-semibold text-gray-700 flex items-center justify-center gap-2">
+                <span className="text-gray-900">🕒</span>
+                <span>Dashboard refreshes daily after <span className="font-bold text-gray-900">8 PM</span></span>
+              </div>
+            </div>
+          </div>
+
 
           {/* Right Section: Progress and Logout */}
           <div className="flex items-center space-x-6">
@@ -332,7 +343,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                 <div className="relative">
                   {/* Background timeline line */}
                   <div className="absolute top-8 left-0 right-0 h-1 bg-gray-200 rounded-full"></div>
-                  
+
                   {/* Progress timeline line */}
                   <motion.div
                     className="absolute top-8 left-0 right-0 h-1 bg-gradient-to-r from-[#95aac9] via-[#d32777] to-[#e37335] rounded-full"
@@ -386,13 +397,12 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                             >
                               {/* Milestone icon */}
                               <div
-                                className={`w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full border-3 shadow-lg absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-500 flex items-center justify-center ${
-                                  isCompleted
+                                className={`w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full border-3 shadow-lg absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-500 flex items-center justify-center ${isCompleted
                                     ? 'bg-green-500 border-green-400 shadow-green-200'
                                     : isCurrent
-                                    ? 'bg-[#95aac9] border-[#95aac9] shadow-blue-200 animate-pulse'
-                                    : 'bg-gray-300 border-gray-300 shadow-gray-200'
-                                }`}
+                                      ? 'bg-[#95aac9] border-[#95aac9] shadow-blue-200 animate-pulse'
+                                      : 'bg-gray-300 border-gray-300 shadow-gray-200'
+                                  }`}
                                 style={{
                                   backgroundColor: isCompleted ? milestone.color : undefined,
                                   boxShadow: isCompleted ? `0 0 20px ${milestone.color}20` : undefined
@@ -405,13 +415,12 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
 
                               {/* Milestone content */}
                               <div className="text-center w-full px-2 md:px-3 pt-16 md:pt-20">
-                                <div className={`text-sm md:text-base lg:text-lg font-bold mb-2 px-2 md:px-3 py-1 md:py-1.5 rounded-lg transition-colors ${
-                                  isCompleted
+                                <div className={`text-sm md:text-base lg:text-lg font-bold mb-2 px-2 md:px-3 py-1 md:py-1.5 rounded-lg transition-colors ${isCompleted
                                     ? 'text-green-700 bg-green-100'
                                     : isCurrent
-                                    ? 'text-[#95aac9] bg-[#95aac9]/10'
-                                    : 'text-gray-600 bg-gray-100'
-                                }`}>
+                                      ? 'text-[#95aac9] bg-[#95aac9]/10'
+                                      : 'text-gray-600 bg-gray-100'
+                                  }`}>
                                   {milestone.name}
                                 </div>
                                 {/* <div className="text-xs md:text-sm font-medium text-gray-700 mb-1">
@@ -420,13 +429,12 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                                 <div className="text-xs md:text-sm font-medium text-gray-700 mb-1">
                                   Due: {completionDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                 </div>
-                                <div className={`text-xs md:text-sm font-semibold px-2 md:px-3 py-1 rounded-full border-2 ${
-                                  isCompleted
+                                <div className={`text-xs md:text-sm font-semibold px-2 md:px-3 py-1 rounded-full border-2 ${isCompleted
                                     ? 'bg-green-100 text-green-800 border-green-500'
                                     : isCurrent
-                                    ? 'bg-[#95aac9]/20 text-[#5a616b] border-[#95aac9]'
-                                    : 'bg-gray-200 text-gray-600 border-gray-400'
-                                }`}>
+                                      ? 'bg-[#95aac9]/20 text-[#5a616b] border-[#95aac9]'
+                                      : 'bg-gray-200 text-gray-600 border-gray-400'
+                                  }`}>
                                   {isCompleted ? 'completed' : isCurrent ? 'in progress' : 'pending'}
                                 </div>
                                 {daysFromStart >= 0 && !isCompleted && (
@@ -557,21 +565,19 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                         key={update.id}
                         initial={{ x: -20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
-                        className={`p-3 rounded-lg border-l-4 ${
-                          update.type === 'success' ? 'border-l-green-500 bg-green-50' :
-                          update.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
-                          'border-l-blue-500 bg-blue-50'
-                        }`}
+                        className={`p-3 rounded-lg border-l-4 ${update.type === 'success' ? 'border-l-green-500 bg-green-50' :
+                            update.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
+                              'border-l-blue-500 bg-blue-50'
+                          }`}
                       >
                         <div className="flex items-start space-x-3">
-                          <div className={`p-1 rounded-full ${
-                            update.type === 'success' ? 'bg-green-100' :
-                            update.type === 'warning' ? 'bg-yellow-100' :
-                            'bg-blue-100'
-                          }`}>
+                          <div className={`p-1 rounded-full ${update.type === 'success' ? 'bg-green-100' :
+                              update.type === 'warning' ? 'bg-yellow-100' :
+                                'bg-blue-100'
+                            }`}>
                             {update.type === 'success' ? <FiCheckCircle className="w-4 h-4 text-green-600" /> :
-                             update.type === 'warning' ? <FiAlertCircle className="w-4 h-4 text-yellow-600" /> :
-                             <FiClock className="w-4 h-4 text-blue-600" />}
+                              update.type === 'warning' ? <FiAlertCircle className="w-4 h-4 text-yellow-600" /> :
+                                <FiClock className="w-4 h-4 text-blue-600" />}
                           </div>
                           <div className="flex-1">
                             <p className="text-sm text-gray-700">{update.message}</p>
@@ -633,40 +639,39 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                           return 0;
                         })
                         .map((deliverable, index) => (
-                        <motion.div
-                          key={index}
-                          className={`flex items-center justify-between p-3 rounded-lg border ${
-                            deliverable.completed
-                              ? deliverable.isPremium
-                                ? 'bg-green-50 border-yellow-400'
-                                : 'bg-green-50 border-green-200'
-                              : deliverable.isPremium
-                              ? 'bg-gray-50 border-yellow-400'
-                              : 'bg-gray-50 border-gray-200'
-                          }`}
-                          initial={{ x: -20, opacity: 0 }}
-                          animate={{ x: 0, opacity: 1 }}
-                          transition={{ delay: index * 0.05 }}
-                        >
-                          <div className="flex items-center space-x-3">
-                            <input
-                              type="checkbox"
-                              checked={deliverable.completed}
-                              onChange={(e) => handleDeliverableToggle(deliverable.name, e.target.checked)}
-                              className="w-4 h-4 text-[#95aac9] rounded focus:ring-[#95aac9]"
-                              aria-label={`Mark ${deliverable.name} as ${deliverable.completed ? 'incomplete' : 'complete'}`}
-                            />
-                            <span className={`text-sm ${deliverable.completed ? 'line-through text-gray-500' : 'text-gray-700'}`}>
-                              {deliverable.name}
-                            </span>
-                          </div>
-                          {deliverable.isPremium && (
-                            <Badge variant="outline" className="text-yellow-600 border-yellow-400">
-                              Premium
-                            </Badge>
-                          )}
-                        </motion.div>
-                      ))}
+                          <motion.div
+                            key={index}
+                            className={`flex items-center justify-between p-3 rounded-lg border ${deliverable.completed
+                                ? deliverable.isPremium
+                                  ? 'bg-green-50 border-yellow-400'
+                                  : 'bg-green-50 border-green-200'
+                                : deliverable.isPremium
+                                  ? 'bg-gray-50 border-yellow-400'
+                                  : 'bg-gray-50 border-gray-200'
+                              }`}
+                            initial={{ x: -20, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            transition={{ delay: index * 0.05 }}
+                          >
+                            <div className="flex items-center space-x-3">
+                              <input
+                                type="checkbox"
+                                checked={deliverable.completed}
+                                onChange={(e) => handleDeliverableToggle(deliverable.name, e.target.checked)}
+                                className="w-4 h-4 text-[#95aac9] rounded focus:ring-[#95aac9]"
+                                aria-label={`Mark ${deliverable.name} as ${deliverable.completed ? 'incomplete' : 'complete'}`}
+                              />
+                              <span className={`text-sm ${deliverable.completed ? 'line-through text-gray-500' : 'text-gray-700'}`}>
+                                {deliverable.name}
+                              </span>
+                            </div>
+                            {deliverable.isPremium && (
+                              <Badge variant="outline" className="text-yellow-600 border-yellow-400">
+                                Premium
+                              </Badge>
+                            )}
+                          </motion.div>
+                        ))}
                     </div>
                   </CardContent>
                 )}
@@ -706,11 +711,10 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                         return (
                           <motion.div
                             key={milestone.id}
-                            className={`flex items-center justify-between p-3 rounded-lg border ${
-                              milestone.completed
+                            className={`flex items-center justify-between p-3 rounded-lg border ${milestone.completed
                                 ? 'bg-green-50 border-green-200'
                                 : 'bg-gray-50 border-gray-200'
-                            }`}
+                              }`}
                             initial={{ x: -20, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
                             transition={{ delay: index * 0.05 }}
@@ -923,8 +927,8 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                             variant={request.status === 'completed' ? 'default' : request.status === 'in-progress' ? 'secondary' : 'outline'}
                             className={
                               request.status === 'completed' ? 'bg-green-100 text-green-800' :
-                              request.status === 'in-progress' ? 'bg-yellow-100 text-yellow-800' :
-                              'bg-gray-100 text-gray-800'
+                                request.status === 'in-progress' ? 'bg-yellow-100 text-yellow-800' :
+                                  'bg-gray-100 text-gray-800'
                             }
                           >
                             {request.status}
@@ -1064,35 +1068,34 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                               initial={{ x: -20, opacity: 0 }}
                               animate={{ x: 0, opacity: 1 }}
                               transition={{ delay: index * 0.05, duration: 0.3 }}
-                            className="py-4"
-                          >
-                            <div className="flex items-center justify-between mb-3">
-                              <div className="flex-1">
-                                <div className="flex items-center gap-2">
-                                  <span className="font-medium text-gray-900">{item.description}</span>
-                                  <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${
-                                    item.status === 'paid' ? 'bg-green-100 text-green-800' :
-                                    item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                    'bg-red-100 text-red-800'
-                                  }`}>
-                                    {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
-                                  </span>
+                              className="py-4"
+                            >
+                              <div className="flex items-center justify-between mb-3">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-2">
+                                    <span className="font-medium text-gray-900">{item.description}</span>
+                                    <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${item.status === 'paid' ? 'bg-green-100 text-green-800' :
+                                        item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                          'bg-red-100 text-red-800'
+                                      }`}>
+                                      {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
+                                    </span>
+                                  </div>
+                                  <div className="text-xs text-gray-500 mt-1">
+                                    {item.date.toLocaleDateString('en-GB', {
+                                      day: '2-digit',
+                                      month: 'short',
+                                      year: 'numeric'
+                                    })}
+                                  </div>
                                 </div>
-                                <div className="text-xs text-gray-500 mt-1">
-                                  {item.date.toLocaleDateString('en-GB', {
-                                    day: '2-digit',
-                                    month: 'short',
-                                    year: 'numeric'
-                                  })}
+                                <div className="text-right">
+                                  <div className="font-bold text-[#d32777]">
+                                    ₹{item.amount.toLocaleString()}
+                                  </div>
                                 </div>
                               </div>
-                              <div className="text-right">
-                                <div className="font-bold text-[#d32777]">
-                                  ₹{item.amount.toLocaleString()}
-                                </div>
-                              </div>
-                            </div>
-{item.showBreakdown ? (
+                              {item.showBreakdown ? (
                                 <div className="space-y-2">
                                   {item.deliverables.map((deliverable, delIndex) => (
                                     <motion.div
@@ -1105,7 +1108,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                                       <div className="flex-1">
                                         <span className="text-sm font-medium text-gray-800">{deliverable.name}</span>
                                         {deliverable.free && (
-                                          <div className="text-xs mt-1" style={{color: '#10b981', fontWeight: '600'}}>
+                                          <div className="text-xs mt-1" style={{ color: '#10b981', fontWeight: '600' }}>
                                             Included in the package (No charge to you)
                                           </div>
                                         )}
@@ -1139,8 +1142,8 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                                   </p>
                                 </div>
                               )}
-<div className="border-b border-red-500 border-dashed mt-6"></div>
-                          </motion.div>
+                              <div className="border-b border-red-500 border-dashed mt-6"></div>
+                            </motion.div>
                           ))}
                         </motion.div>
                       )}
@@ -1175,23 +1178,23 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                       <div>No preview available</div>
                     )}
                   </div>
-                {!progressData.sitePreview.isEnabled && (
-                  <div className="text-center p-4 bg-yellow-100 rounded-md text-yellow-800 font-semibold mb-3">
-                    Site is under development. We will notify you when it's live.
-                  </div>
-                )}
-                <Button
-                  className={`w-full ${progressData.sitePreview.isEnabled ? 'bg-[#e37335] hover:bg-[#e37335]/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
-                  onClick={() => {
-                    if (progressData.sitePreview.isEnabled && progressData.sitePreview.liveUrl) {
-                      window.open(progressData.sitePreview.liveUrl, '_blank');
-                    }
-                  }}
-                  disabled={!progressData.sitePreview.isEnabled}
-                >
-                  <FiExternalLink className="w-4 h-4 mr-2" />
-                  View Live Site
-                </Button>
+                  {!progressData.sitePreview.isEnabled && (
+                    <div className="text-center p-4 bg-yellow-100 rounded-md text-yellow-800 font-semibold mb-3">
+                      Site is under development. We will notify you when it's live.
+                    </div>
+                  )}
+                  <Button
+                    className={`w-full ${progressData.sitePreview.isEnabled ? 'bg-[#e37335] hover:bg-[#e37335]/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
+                    onClick={() => {
+                      if (progressData.sitePreview.isEnabled && progressData.sitePreview.liveUrl) {
+                        window.open(progressData.sitePreview.liveUrl, '_blank');
+                      }
+                    }}
+                    disabled={!progressData.sitePreview.isEnabled}
+                  >
+                    <FiExternalLink className="w-4 h-4 mr-2" />
+                    View Live Site
+                  </Button>
                 </CardContent>
               </Card>
             </motion.div>
@@ -1225,7 +1228,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                                 variant={request.paymentStatus === 'paid' ? 'default' : 'outline'}
                                 className={
                                   request.paymentStatus === 'paid' ? 'bg-green-100 text-green-800' :
-                                  'bg-yellow-100 text-yellow-800'
+                                    'bg-yellow-100 text-yellow-800'
                                 }
                               >
                                 {request.paymentStatus === 'paid' ? 'Paid' : 'Pending'}
@@ -1239,11 +1242,11 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                             variant={request.status === 'completed' ? 'default' : request.status === 'in-progress' ? 'secondary' : 'outline'}
                             className={
                               request.status === 'completed' ? 'bg-green-100 text-green-800' :
-                              request.status === 'in-progress' ? 'bg-yellow-100 text-yellow-800' :
-                              'bg-gray-100 text-gray-800'
+                                request.status === 'in-progress' ? 'bg-yellow-100 text-yellow-800' :
+                                  'bg-gray-100 text-gray-800'
                             }
                           >
-                           <span>Task:⠀</span> {request.status}
+                            <span>Task:⠀</span> {request.status}
                           </Badge>
                         </div>
                       </div>
