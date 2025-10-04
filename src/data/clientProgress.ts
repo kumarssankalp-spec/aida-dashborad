@@ -184,7 +184,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         name: 'Udyam Registration Certificate.pdf',
         url: 'https://example.com/brand-guide.pdf',
         type: 'pdf',
-        size: 5242880,
+        size: 353280,
         uploadedAt: new Date('2025-10-04')
       },
       // {
