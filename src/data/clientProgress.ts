@@ -163,51 +163,51 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { name: 'Sitemap & Robots.txt Auto-Generation – search engine friendly', completed: false }
     ],
     assets: [
+      // {
+      //   id: 'logo-1',
+      //   name: 'Company Logo.png',
+      //   url: 'https://example.com/logo.png',
+      //   type: 'image',
+      //   size: 1024000,
+      //   uploadedAt: new Date('2024-01-15')
+      // },
+      // {
+      //   id: 'favicon-1',
+      //   name: 'Favicon.ico',
+      //   url: 'https://example.com/favicon.ico',
+      //   type: 'other',
+      //   size: 2048,
+      //   uploadedAt: new Date('2024-01-15')
+      // },
       {
-        id: 'logo-1',
-        name: 'Company Logo.png',
-        url: 'https://example.com/logo.png',
-        type: 'image',
-        size: 1024000,
-        uploadedAt: new Date('2024-01-15')
-      },
-      {
-        id: 'favicon-1',
-        name: 'Favicon.ico',
-        url: 'https://example.com/favicon.ico',
-        type: 'other',
-        size: 2048,
-        uploadedAt: new Date('2024-01-15')
-      },
-      {
-        id: 'brand-guide-1',
-        name: 'Brand Guidelines.pdf',
+        id: 'Udyam_Registration_Certificate',
+        name: 'Udyam Registration Certificate.pdf',
         url: 'https://example.com/brand-guide.pdf',
         type: 'pdf',
         size: 5242880,
-        uploadedAt: new Date('2024-01-16')
+        uploadedAt: new Date('2025-10-04')
       },
-      {
-        id: 'mockup-1',
-        name: 'Homepage Mockup.svg',
-        url: 'https://example.com/mockup.svg',
-        type: 'svg',
-        size: 102400,
-        uploadedAt: new Date('2024-01-17')
-      },
-      {
-        id: 'readme-1',
-        name: 'Project Readme.txt',
-        url: 'https://example.com/readme.txt',
-        type: 'txt',
-        size: 4096,
-        uploadedAt: new Date('2024-01-18')
-      }
+      // {
+      //   id: 'mockup-1',
+      //   name: 'Homepage Mockup.svg',
+      //   url: 'https://example.com/mockup.svg',
+      //   type: 'svg',
+      //   size: 102400,
+      //   uploadedAt: new Date('2024-01-17')
+      // },
+      // {
+      //   id: 'readme-1',
+      //   name: 'Project Readme.txt',
+      //   url: 'https://example.com/readme.txt',
+      //   type: 'txt',
+      //   size: 4096,
+      //   uploadedAt: new Date('2024-01-18')
+      // }
     ],
-    noAssets: true,
+    noAssets: false,
     progress: {
       frontend: { name: 'Frontend Development', percentage: 0, color: '#95aac9' },
-      backend: { name: 'Backend Development', percentage: 10, color: '#d32777' },
+      backend: { name: 'Backend Development', percentage: 15, color: '#d32777' },
       seo: { name: 'SEO Optimization', percentage: 0, color: '#e37335' }
     },
     specialRequests: [
@@ -245,8 +245,8 @@ export const clientProgressData: Record<string, ClientProgress> = {
     liveUpdates: [
       {
         id: 'update-1',
-        message: 'Domain registration has been done',
-        timestamp: new Date('2025-10-04T15:00:00'),
+        message: 'MSME registartion & Certificate',
+        timestamp: new Date('2025-10-04T21:00:00'),
         type: 'success'
       },
       {
@@ -266,7 +266,13 @@ export const clientProgressData: Record<string, ClientProgress> = {
         message: 'Logo and UI desinging is in the process',
         timestamp: new Date('2025-10-04T15:45:00'),
         type: 'warning'
-      }//warnig , info is also a type
+      },
+      {
+        id: 'update-5',
+        message: 'Domain registration has been done',
+        timestamp: new Date('2025-10-04T15:00:00'),
+        type: 'success'
+      },//warnig , info is also a type
     ],
     credentials: [
       {
