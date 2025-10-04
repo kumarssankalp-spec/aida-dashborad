@@ -22,7 +22,7 @@ export const clients: Client[] = [
   {
     id: 'client-a',
     username: 'Amit_kumar',
-    password: hashPassword('stamix_luxe_llp2025'),
+    password: hashPassword('stamix_luxe_llp2025'), 
     name: 'Amit Kumar',
     company: 'Stamix Luxe LLP',
     email: 'akmarwaha99@yahoo.in',
