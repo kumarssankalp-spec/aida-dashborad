@@ -182,7 +182,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       {
         id: 'Udyam_Registration_Certificate',
         name: 'Udyam Registration Certificate.pdf',
-        url: 'https://example.com/brand-guide.pdf',
+        url: 'https://dashboard.aidacorp.in/assets/stamix/Udyam_Registration_Certificate.pdf',
         type: 'pdf',
         size: 353280,
         uploadedAt: new Date('2025-10-04')
