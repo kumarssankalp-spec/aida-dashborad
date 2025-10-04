@@ -1,25 +1,40 @@
 import React, { useState, useEffect } from 'react';
-import { isAuthenticated } from './config/auth';
+import { isAuthenticated, getCurrentClient } from './config/auth';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
+import ClientDashboard from './components/ClientDashboard';
 
 const App: React.FC = () => {
   const [authenticated, setAuthenticated] = useState(false);
+  const [confirmed, setConfirmed] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Check authentication status on app load
     const authStatus = isAuthenticated();
+    const client = getCurrentClient();
     setAuthenticated(authStatus);
+    if (client) {
+      setConfirmed(client.tier);
+    }
     setLoading(false);
   }, []);
 
   const handleLogin = () => {
     setAuthenticated(true);
+    const client = getCurrentClient();
+    if (client) {
+      setConfirmed(client.tier);
+    }
   };
 
   const handleLogout = () => {
     setAuthenticated(false);
+    setConfirmed(false);
+  };
+
+  const handleConfirmation = () => {
+    setConfirmed(true);
   };
 
   if (loading) {
@@ -33,7 +48,11 @@ const App: React.FC = () => {
   return (
     <div className="App">
       {authenticated ? (
-        <Dashboard onLogout={handleLogout} />
+        confirmed ? (
+          <ClientDashboard onLogout={handleLogout} />
+        ) : (
+          <Dashboard onLogout={handleLogout} onConfirm={handleConfirmation} />
+        )
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}

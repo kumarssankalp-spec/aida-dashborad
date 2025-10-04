@@ -9,6 +9,7 @@ import { Card, CardHeader, CardContent } from './ui/card';
 
 interface ConfirmationModalProps {
   onClose: () => void;
+  onConfirm: () => void;
   clientData: {
     name: string;
     email: string;
@@ -19,7 +20,7 @@ interface ConfirmationModalProps {
   };
 }
 
-const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientData }) => {
+const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, onConfirm, clientData }) => {
   const [formData, setFormData] = useState({
     name: clientData.name,
     email: clientData.email,
@@ -130,7 +131,7 @@ const ConfirmationModal: React.FC<ConfirmationModalProps> = ({ onClose, clientDa
                   <p className="text-sm text-gray-600">We'll schedule a project kickoff meeting to discuss timelines, deliverables, and next steps.</p>
                 </div>
 
-                <Button onClick={onClose} className="w-full bg-gradient-to-r from-[#8c52ff] to-[#8676e9] hover:from-[#8676e9] hover:to-[#8c52ff] text-white font-semibold py-3 text-lg">Back to Dashboard</Button>
+                <Button onClick={() => { onConfirm(); onClose(); }} className="w-full bg-gradient-to-r from-[#8c52ff] to-[#8676e9] hover:from-[#8676e9] hover:to-[#8c52ff] text-white font-semibold py-3 text-lg">Back to Dashboard</Button>
               </CardContent>
             </Card>
           </motion.div>

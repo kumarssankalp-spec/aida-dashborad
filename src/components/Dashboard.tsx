@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import {
   FiUser, FiLogOut, FiArrowRight, FiExternalLink,
-  FiStar, FiTrendingUp, FiPackage, FiCalendar, 
-  FiTarget, FiGlobe, FiImage, FiCheckCircle, 
+  FiStar, FiTrendingUp, FiPackage, FiCalendar,
+  FiTarget, FiGlobe, FiImage, FiCheckCircle,
   FiMail, FiMapPin, FiCheck
 } from 'react-icons/fi';
 import { RiDiscountPercentFill } from "react-icons/ri";
@@ -16,9 +16,10 @@ import { Card, CardHeader, CardContent } from './ui/card';
 
 interface DashboardProps {
   onLogout: () => void;
+  onConfirm: () => void;
 }
 
-const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
+const Dashboard: React.FC<DashboardProps> = ({ onLogout, onConfirm }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const currentClient = getCurrentClient();
   const [projectData, setProjectData] = useState(() => getClientProject(currentClient?.id || ''));
@@ -196,9 +197,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
             <CardContent>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6">
                 {projectData.designs.map((design, index) => (
-                  <motion.div key={design.id} className={`group cursor-pointer rounded-xl overflow-hidden border-2 transition-all duration-300 ${
-                    design.isPremium ? 'border-yellow-400 bg-gradient-to-br from-yellow-100 to-yellow-200' : selectedDesignIds.includes(design.id) ? 'border-[#8c52ff] bg-white/50' : 'border-white/30 bg-white/20 hover:border-white/50'
-                  }`} onClick={() => toggleDesignSelection(design.id)} whileHover={{ scale: 1.05, y: -5 }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}>
+                  <motion.div key={design.id} className={`group cursor-pointer rounded-xl overflow-hidden border-2 transition-all duration-300 ${design.isPremium ? 'border-yellow-400 bg-gradient-to-br from-yellow-100 to-yellow-200' : selectedDesignIds.includes(design.id) ? 'border-[#8c52ff] bg-white/50' : 'border-white/30 bg-white/20 hover:border-white/50'}`} onClick={() => toggleDesignSelection(design.id)} whileHover={{ scale: 1.05, y: -5 }} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: index * 0.1 }}>
                     <div className="relative aspect-video">
                       {imageErrors[design.id] ? (
                         <div className="w-full h-full bg-gradient-to-br from-[#8c52ff]/20 to-[#8676e9]/20 flex items-center justify-center">
@@ -255,9 +254,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                     if (!design) return null;
 
                     return (
-                      <motion.div key={designId} className={`p-4 rounded-xl border relative overflow-hidden ${
-                        design.isPremium ? 'bg-gradient-to-br from-yellow-100 to-yellow-200 border-yellow-400' : 'bg-gradient-to-br from-white/50 to-[#8c52ff]/10 border-[#8c52ff]/30'
-                      }`} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3 }}>
+                      <motion.div key={designId} className={`p-4 rounded-xl border relative overflow-hidden ${design.isPremium ? 'bg-gradient-to-br from-yellow-100 to-yellow-200 border-yellow-400' : 'bg-gradient-to-br from-white/50 to-[#8c52ff]/10 border-[#8c52ff]/30'}`} initial={{ scale: 0.9, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.3 }}>
                         {design.isPremium && (
                           <div className="absolute top-2 right-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded z-10">
                             Premium
@@ -273,9 +270,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                           )}
                         </div>
                         <div className="flex items-center space-x-3 mb-3">
-                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                            design.isPremium ? 'bg-yellow-500' : 'bg-[#8c52ff]'
-                          }`}>
+                          <div className={`w-8 h-8 rounded-full flex items-center justify-center ${design.isPremium ? 'bg-yellow-500' : 'bg-[#8c52ff]'}`}>
                             <FiCheck className="w-5 h-5 text-white" />
                           </div>
                           <h4 className="font-bold text-gray-800">{design.title}</h4>
@@ -351,11 +346,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                 </h4>
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                   {projectData.proposalDetails.deliverables.map((deliverable, index) => (
-                    <div key={index} className={`flex items-center justify-between p-3 rounded-lg border ${
-                      deliverable.isPremium
-                        ? 'bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-400'
-                        : 'bg-white/20 border-black/30'
-                    }`}>
+                    <div key={index} className={`flex items-center justify-between p-3 rounded-lg border ${deliverable.isPremium ? 'bg-gradient-to-r from-yellow-100 to-yellow-200 border-yellow-400' : 'bg-white/20 border-black/30'}`}>
                       <span className="text-gray-700 font-medium">{index + 1}. {deliverable.name}</span>
                       {deliverable.isPremium && (
                         <div className="bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded">
@@ -393,7 +384,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
                 </div>
                 <div className="flex items-center space-x-3 p-4 rounded-lg bg-gradient-to-r from-[#ff914d]/10 to-[#8c52ff]/10 border border-[#ff914d]/30">
                   <div className="w-10 h-10 bg-gradient-to-r from-[#ff914d] to-[#8c52ff] rounded-full flex items-center justify-center">
-                    <FiUser className="w-5 h-5 text-white" />
+                    <FiMail className="w-5 h-5 text-white" />
                   </div>
                   <div>
                     <p className="text-xs text-gray-500">Contact</p>
@@ -424,7 +415,7 @@ const Dashboard: React.FC<DashboardProps> = ({ onLogout }) => {
       </motion.main>
 
       {showConfirmation && (
-        <ConfirmationModal onClose={() => setShowConfirmation(false)} clientData={{ name: currentClient.name, email: currentClient.email, price: projectData.proposalDetails.budget, discount: projectData.proposalDetails.discount, company: currentClient.company }} />
+        <ConfirmationModal onClose={() => setShowConfirmation(false)} onConfirm={onConfirm} clientData={{ name: currentClient.name, email: currentClient.email, price: projectData.proposalDetails.budget, discount: projectData.proposalDetails.discount, company: currentClient.company }} />
       )}
     </div>
   );

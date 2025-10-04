@@ -18,6 +18,10 @@ export interface ProjectData {
     isPremium?: boolean;
   }>;
   selectedDesigns: string[];
+  invoice?: {
+    filePath: string;
+    downloadName: string;
+  };
   proposalDetails: {
     projectType: string;
     timeline: string;
@@ -150,6 +154,10 @@ export const clientProjects: Record<string, ProjectData> = {
 
     ],
     selectedDesigns: ['design-premium2', 'design-premium'],
+    invoice: {
+      filePath: '/invoices/a1b2c3d4e5f6.pdf',
+      downloadName: 'Stamix_Luxe_LLP_Invoice.pdf'
+    },
     proposalDetails: {
       projectType: 'E-Commerce Website',
       timeline: '2-3 weeks',
@@ -301,6 +309,10 @@ export const clientProjects: Record<string, ProjectData> = {
       }
     ],
     selectedDesigns: ['design-5', 'design-6'],
+    invoice: {
+      filePath: '/invoices/b2c3d4e5f6g7.pdf',
+      downloadName: 'SaaS_Analytics_Platform_Invoice.pdf'
+    },
     proposalDetails: {
       projectType: 'SaaS Platform',
       timeline: '12-14 weeks',
@@ -375,6 +387,10 @@ export const clientProjects: Record<string, ProjectData> = {
       }
     ],
     selectedDesigns: ['design-8', 'design-10'],
+    invoice: {
+      filePath: '/invoices/c3d4e5f6g7h8.pdf',
+      downloadName: 'Mobile_App_Platform_Invoice.pdf'
+    },
     proposalDetails: {
       projectType: 'Mobile App + Web Portal',
       timeline: '16-20 weeks',
