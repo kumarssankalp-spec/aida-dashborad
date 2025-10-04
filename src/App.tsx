@@ -3,6 +3,7 @@ import { isAuthenticated, getCurrentClient } from './config/auth';
 import LoginPage from './components/LoginPage';
 import Dashboard from './components/Dashboard';
 import ClientDashboard from './components/ClientDashboard';
+import { Toaster } from './components/ui/toaster';
 
 const App: React.FC = () => {
   const [authenticated, setAuthenticated] = useState(false);
@@ -56,6 +57,7 @@ const App: React.FC = () => {
       ) : (
         <LoginPage onLogin={handleLogin} />
       )}
+      <Toaster />
     </div>
   );
 };
