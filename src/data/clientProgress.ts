@@ -245,8 +245,8 @@ export const clientProgressData: Record<string, ClientProgress> = {
     liveUpdates: [
       {
         id: 'update-1',
-        message: 'MSME registartion & Certificate',
-        timestamp: new Date('2025-10-04T21:00:00'),
+        message: 'Created instagram & facebook business page',
+        timestamp: new Date('2025-10-06T18:00:00'),
         type: 'success'
       },
       {
@@ -271,6 +271,12 @@ export const clientProgressData: Record<string, ClientProgress> = {
         id: 'update-5',
         message: 'Domain registration has been done',
         timestamp: new Date('2025-10-04T15:00:00'),
+        type: 'success'
+      },
+      {
+        id: 'update-6',
+        message: 'MSME registartion & Certificate',
+        timestamp: new Date('2025-10-04T21:00:00'),
         type: 'success'
       },//warnig , info is also a type
     ],
