@@ -301,7 +301,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         password: 'luxepawlour2025@'
       },
       {
-        siteTitle: 'facebook',
+        siteTitle: 'Facebook',
         siteUrl: 'https://www.facebook.com/login/',
         username: 'luxepawlour',
         password: 'luxepawlour2025@'
