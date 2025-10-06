@@ -294,9 +294,15 @@ export const clientProgressData: Record<string, ClientProgress> = {
         username: 'luxepawlour@gmail.com ',
         password: 'luxepawlour2025@'
       },
-       {
+      {
         siteTitle: 'Instagram',
         siteUrl: 'https://www.instagram.com/accounts/login/',
+        username: 'luxepawlour',
+        password: 'luxepawlour2025@'
+      },
+      {
+        siteTitle: 'facebook',
+        siteUrl: 'https://www.facebook.com/login/',
         username: 'luxepawlour',
         password: 'luxepawlour2025@'
       },
@@ -455,7 +461,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         title: 'Marketing & Advertisement campaigns',
         description: '40 days after the site forntend completion or till the budget get exhausted.'
       },
-      
+
     ],
     lastUpdated: new Date('2025-10-04')
   }
