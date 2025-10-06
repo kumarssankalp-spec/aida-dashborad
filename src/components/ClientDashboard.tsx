@@ -1121,7 +1121,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
           {/* Right Column */}
           <div className="space-y-6">
 
-{/* Client Info & Payment */}
+            {/* Client Info & Payment */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -1291,7 +1291,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
             </motion.div>
 
             {/* Project Details */}
-             <motion.div
+            <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.4 }}
@@ -1330,7 +1330,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                   </Button>
                 </CardContent>
               </Card>
-            </motion.div> 
+            </motion.div>
 
             {/* Site Preview */}
             <motion.div
