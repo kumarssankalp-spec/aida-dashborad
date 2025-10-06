@@ -359,7 +359,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { message: 'Project initialized successfully', type: 'success', timeLimit: true },
       // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
       // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
-      { message: 'Payment pending for website development ( 30% remaining ) refer payemnt breakdown.', type: 'error', timeLimit: false }
+      { message: 'Payment pending for website development ( 30% remaining ) refer payemnt breakdown.Please complete to proceed further.', type: 'error', timeLimit: false }
     ],
     paymentTracking: {
       totalAmount: 50000,
