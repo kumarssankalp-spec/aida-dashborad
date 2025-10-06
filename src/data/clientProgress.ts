@@ -281,6 +281,12 @@ export const clientProgressData: Record<string, ClientProgress> = {
         username: 'luxepawlour@gmail.com ',
         password: 'luxepawlour2025@'
       },
+       {
+        siteTitle: 'Instagram',
+        siteUrl: 'https://www.instagram.com/accounts/login/',
+        username: 'luxepawlour',
+        password: 'luxepawlour2025@'
+      },
       {
         siteTitle: 'Hostinger',
         siteUrl: 'https://hpanel.hostinger.com/domain/luxepawlour.com',

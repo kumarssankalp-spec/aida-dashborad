@@ -326,7 +326,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
             <div className="inline-block px-4 py-2 rounded-lg bg-white border border-gray-300 shadow-sm">
               <div className="text-sm font-semibold text-gray-700 flex items-center justify-center gap-2">
                 <span className="text-gray-900">🕒</span>
-                <span>Dashboard refreshes daily after <span className="font-bold text-gray-900">8 PM</span></span>
+                <span>Dashboard refreshes daily after <span className="font-bold text-gray-900">8 PM. </span>Sundays are off</span>
               </div>
             </div>
           </div>
