@@ -1120,49 +1120,8 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
 
           {/* Right Column */}
           <div className="space-y-6">
-            {/* Project Details */}
-            <motion.div
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-            >
-              <Card className="border border-[#95aac9]/20">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <FiGlobe className="w-6 h-6 text-[#95aac9]" />
-                    <h3 className="text-xl font-bold text-gray-800">Project Details</h3>
-                  </div>
-                </CardHeader>
-                <CardContent className="space-y-4">
-                  <div>
-                    <label className="text-sm font-medium text-gray-600">Domain</label>
-                    <div className="flex items-center space-x-2 mt-1 group">
-                      <span
-                        className="font-medium text-[#95aac9] hover:underline cursor-pointer"
-                        onClick={() => window.open(`https://${progressData.projectDetails.domain}`, '_blank')}
-                      >
-                        {progressData.projectDetails.domain}
-                      </span>
-                      <FiExternalLink className="w-4 h-4 text-[#95aac9] group-hover:text-black" />
-                    </div>
-                  </div>
-                  <div>
-                    <label className="text-sm font-medium text-gray-600">Domain Provider</label>
-                    <p className="font-medium mt-1">{progressData.projectDetails.domainProvider}</p>
-                  </div>
-                  <Button
-                    variant="outline"
-                    className="w-full border-[#95aac9] text-[#95aac9] hover:bg-[#95aac9] hover:text-white"
-                    onClick={() => window.open(progressData.projectDetails.adminDashboardLink, '_blank')}
-                  >
-                    <FiExternalLink className="w-4 h-4 mr-2" />
-                    Admin Dashboard
-                  </Button>
-                </CardContent>
-              </Card>
-            </motion.div>
 
-            {/* Client Info & Payment */}
+{/* Client Info & Payment */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -1330,6 +1289,48 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                 </CardContent>
               </Card>
             </motion.div>
+
+            {/* Project Details */}
+             <motion.div
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              <Card className="border border-[#95aac9]/20">
+                <CardHeader>
+                  <div className="flex items-center space-x-3">
+                    <FiGlobe className="w-6 h-6 text-[#95aac9]" />
+                    <h3 className="text-xl font-bold text-gray-800">Project Details</h3>
+                  </div>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Domain</label>
+                    <div className="flex items-center space-x-2 mt-1 group">
+                      <span
+                        className="font-medium text-[#95aac9] hover:underline cursor-pointer"
+                        onClick={() => window.open(`https://${progressData.projectDetails.domain}`, '_blank')}
+                      >
+                        {progressData.projectDetails.domain}
+                      </span>
+                      <FiExternalLink className="w-4 h-4 text-[#95aac9] group-hover:text-black" />
+                    </div>
+                  </div>
+                  <div>
+                    <label className="text-sm font-medium text-gray-600">Domain Provider</label>
+                    <p className="font-medium mt-1">{progressData.projectDetails.domainProvider}</p>
+                  </div>
+                  <Button
+                    variant="outline"
+                    className="w-full border-[#95aac9] text-[#95aac9] hover:bg-[#95aac9] hover:text-white"
+                    onClick={() => window.open(progressData.projectDetails.adminDashboardLink, '_blank')}
+                  >
+                    <FiExternalLink className="w-4 h-4 mr-2" />
+                    Admin Dashboard
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div> 
 
             {/* Site Preview */}
             <motion.div
