@@ -5,7 +5,7 @@ import {
   FiPackage, FiTrendingUp, FiGlobe, FiMail, FiMapPin,
   FiCheck, FiClock, FiAlertCircle, FiImage, FiFileText,
   FiFile, FiSend, FiRefreshCw, FiExternalLink, FiChevronDown,
-  FiChevronUp, FiStar, FiDollarSign, FiPercent, FiCopy
+  FiChevronUp, FiStar, FiDollarSign, FiPercent, FiCopy, FiInfo, FiX
 } from 'react-icons/fi';
 import { FaFilePdf, FaFileImage, FaFileAlt, FaFileCode } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
@@ -38,9 +38,12 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
   });
   const [isSubmittingRequest, setIsSubmittingRequest] = useState(false);
   const [requestSuccess, setRequestSuccess] = useState(false);
-  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({});
+  const [expandedSections, setExpandedSections] = useState<Record<string, boolean>>({
+    credentials: true
+  });
   const [showPasswords, setShowPasswords] = useState<Record<number, boolean>>({});
   const [showPaymentBreakdown, setShowPaymentBreakdown] = useState(false);
+  const [visibleMessages, setVisibleMessages] = useState<boolean[]>([]);
   const timelineRef = useRef<HTMLDivElement>(null);
 
   const { toast } = useToast();
@@ -112,6 +115,25 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
       }
     }
   }, [progressData]);
+
+  useEffect(() => {
+    if (progressData.messages) {
+      const initialVisibility = progressData.messages.map(msg => true);
+      setVisibleMessages(initialVisibility);
+
+      progressData.messages.forEach((msg, index) => {
+        if (msg.timeLimit) {
+          setTimeout(() => {
+            setVisibleMessages(prev => {
+              const newVis = [...prev];
+              newVis[index] = false;
+              return newVis;
+            });
+          }, 15000); // 15 seconds
+        }
+      });
+    }
+  }, [progressData.messages]);
 
   // Setup timers on mount and reset on activity
   useEffect(() => {
@@ -363,6 +385,57 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
         animate={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 0.2 }}
       >
+        {/* Message above Project Overview */}
+        {progressData.messages && progressData.messages.length > 0 && (
+          <div className="mb-4 max-w-7xl mx-auto px-4 lg:px-8">
+            <AnimatePresence>
+              {progressData.messages
+                .map((msg, index) => {
+                  if (!visibleMessages[index]) return null;
+                  let IconComponent;
+                  let bgColor;
+                  let textColor;
+                  switch (msg.type) {
+                    case 'success':
+                      IconComponent = FiCheckCircle;
+                      bgColor = 'bg-green-100';
+                      textColor = 'text-green-700';
+                      break;
+                    case 'warning':
+                      IconComponent = FiAlertCircle;
+                      bgColor = 'bg-yellow-100';
+                      textColor = 'text-yellow-700';
+                      break;
+                    case 'error':
+                      IconComponent = FiX;
+                      bgColor = 'bg-red-100';
+                      textColor = 'text-red-700';
+                      break;
+                    case 'info':
+                    default:
+                      IconComponent = FiInfo;
+                      bgColor = 'bg-blue-100';
+                      textColor = 'text-blue-700';
+                      break;
+                  }
+                  return (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: 20, transition: { duration: 0.3 } }}
+                      className={`${bgColor} ${textColor} rounded-md p-4 flex items-center space-x-3 mb-2 border border-current`}
+                    >
+                      <IconComponent className="w-6 h-6 flex-shrink-0" />
+                      <p className="text-sm font-medium">{msg.message}</p>
+                    </motion.div>
+                  );
+                })
+                .filter(Boolean)}
+            </AnimatePresence>
+          </div>
+        )}
+
         {/* Project Overview */}
         <motion.div
           initial={{ y: 20, opacity: 0 }}
@@ -467,10 +540,10 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                               {/* Milestone icon */}
                               <div
                                 className={`w-6 h-6 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full border-3 shadow-lg absolute top-8 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-10 transition-all duration-500 flex items-center justify-center ${isCompleted
-                                    ? 'bg-green-500 border-green-400 shadow-green-200'
-                                    : isCurrent
-                                      ? 'bg-[#95aac9] border-[#95aac9] shadow-blue-200 animate-pulse'
-                                      : 'bg-gray-300 border-gray-300 shadow-gray-200'
+                                  ? 'bg-green-500 border-green-400 shadow-green-200'
+                                  : isCurrent
+                                    ? 'bg-[#95aac9] border-[#95aac9] shadow-blue-200 animate-pulse'
+                                    : 'bg-gray-300 border-gray-300 shadow-gray-200'
                                   }`}
                                 style={{
                                   backgroundColor: isCompleted ? milestone.color : undefined,
@@ -485,10 +558,10 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                               {/* Milestone content */}
                               <div className="text-center w-full px-2 md:px-3 pt-16 md:pt-20">
                                 <div className={`text-sm md:text-base lg:text-lg font-bold mb-2 px-2 md:px-3 py-1 md:py-1.5 rounded-lg transition-colors ${isCompleted
-                                    ? 'text-green-700 bg-green-100'
-                                    : isCurrent
-                                      ? 'text-[#95aac9] bg-[#95aac9]/10'
-                                      : 'text-gray-600 bg-gray-100'
+                                  ? 'text-green-700 bg-green-100'
+                                  : isCurrent
+                                    ? 'text-[#95aac9] bg-[#95aac9]/10'
+                                    : 'text-gray-600 bg-gray-100'
                                   }`}>
                                   {milestone.name}
                                 </div>
@@ -499,10 +572,10 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                                   Due: {completionDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
                                 </div>
                                 <div className={`text-xs md:text-sm font-semibold px-2 md:px-3 py-1 rounded-full border-2 ${isCompleted
-                                    ? 'bg-green-100 text-green-800 border-green-500'
-                                    : isCurrent
-                                      ? 'bg-[#95aac9]/20 text-[#5a616b] border-[#95aac9]'
-                                      : 'bg-gray-200 text-gray-600 border-gray-400'
+                                  ? 'bg-green-100 text-green-800 border-green-500'
+                                  : isCurrent
+                                    ? 'bg-[#95aac9]/20 text-[#5a616b] border-[#95aac9]'
+                                    : 'bg-gray-200 text-gray-600 border-gray-400'
                                   }`}>
                                   {isCompleted ? 'completed' : isCurrent ? 'in progress' : 'pending'}
                                 </div>
@@ -539,78 +612,109 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
               transition={{ duration: 0.6, delay: 0.05 }}
             >
               <Card className="border border-[#95aac9]/20">
-                <CardHeader>
-                  <div className="flex items-center space-x-3">
-                    <FiGlobe className="w-6 h-6 text-[#95aac9]" />
-                    <h3 className="text-xl font-bold text-gray-800">All Credentials</h3>
+                <CardHeader
+                  className="cursor-pointer"
+                  onClick={() => toggleSection('credentials')}
+                >
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center space-x-3">
+                      <FiGlobe className="w-6 h-6 text-[#95aac9]" />
+                      <h3 className="text-xl font-bold text-gray-800">All Credentials</h3>
+                      <Badge variant="secondary" className="text-xs">
+                        {progressData.credentials.length}
+                      </Badge>
+                    </div>
+                    {expandedSections.credentials ?
+                      <FiChevronUp className="w-5 h-5" /> :
+                      <FiChevronDown className="w-5 h-5" />
+                    }
                   </div>
                 </CardHeader>
-                <CardContent>
-                  <div className="space-y-4">
-                    {progressData.credentials.map((credential, index) => (
-                      <div key={index} className="p-4 bg-gray-50 rounded-lg border">
-                        <div className="flex items-center justify-between mb-3">
-                          <div className="flex-1">
-                            <div className="font-medium text-gray-800 mb-1">{credential.siteTitle}</div>
-                            <div className="text-sm text-[#95aac9] hover:underline cursor-pointer" onClick={() => window.open(credential.siteUrl, '_blank')}>
-                              {credential.siteUrl}
-                            </div>
-                          </div>
-                          <Button size="sm" variant="outline" onClick={() => window.open(credential.siteUrl, '_blank')}>
-                            <FiExternalLink className="w-4 h-4" />
-                          </Button>
-                        </div>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          <div>
-                            <label className="block text-xs font-medium text-gray-600 mb-1">Username</label>
-                            <div className="flex items-center space-x-2">
-                              <Input
-                                value={credential.username}
-                                readOnly
-                                className="text-sm bg-white"
-                              />
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => navigator.clipboard.writeText(credential.username)}
-                                className="px-2"
-                              >
-                                <FiCopy className="w-3 h-3" />
-                              </Button>
-                            </div>
-                          </div>
-                          <div>
-                            <label className="block text-xs font-medium text-gray-600 mb-1">Password</label>
-                            <div className="flex items-center space-x-2">
-                              <Input
-                                type={showPasswords[index] ? 'text' : 'password'}
-                                value={credential.password}
-                                readOnly
-                                className="text-sm bg-white"
-                              />
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => setShowPasswords(prev => ({ ...prev, [index]: !prev[index] }))}
-                                className="px-2"
-                              >
-                                {showPasswords[index] ? <FiEyeOff className="w-3 h-3" /> : <FiEye className="w-3 h-3" />}
-                              </Button>
-                              <Button
-                                size="sm"
-                                variant="outline"
-                                onClick={() => navigator.clipboard.writeText(credential.password)}
-                                className="px-2"
-                              >
-                                <FiCopy className="w-3 h-3" />
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </CardContent>
+                {expandedSections.credentials && (
+                  <CardContent className="p-0">
+                    <div className="overflow-x-hidden">
+                      <table className="w-full" style={{ tableLayout: 'fixed' }}>
+                        <thead className="bg-gray-50 border-b">
+                          <tr>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Site</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Username</th>
+                            <th className="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Password</th>
+                          </tr>
+                        </thead>
+                        <tbody className="divide-y divide-gray-200">
+                          {progressData.credentials.map((credential, index) => (
+                            <tr key={index} className="hover:bg-gray-50">
+                              <td className="px-6 py-3">
+                                <div className="flex items-center space-x-2">
+                                  <div>
+                                    <div className="text-sm font-medium text-gray-900">{credential.siteTitle}</div>
+                                    <div className="flex items-center space-x-2">
+                                      <div className="text-xs text-[#95aac9] hover:underline cursor-pointer truncate max-w-48" onClick={() => window.open(credential.siteUrl, '_blank')}>
+                                        {credential.siteUrl}
+                                      </div>
+                                      <Button
+                                        size="sm"
+                                        variant="ghost"
+                                        onClick={() => window.open(credential.siteUrl, '_blank')}
+                                        className="h-6 w-6 p-0"
+                                        title="Open site"
+                                      >
+                                        <FiExternalLink className="w-3 h-3" />
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3">
+                                <div className="flex items-center space-x-2">
+                                  <span className="text-sm text-gray-900 font-mono">{credential.username}</span>
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    onClick={() => navigator.clipboard.writeText(credential.username)}
+                                    className="h-6 w-6 p-0"
+                                    title="Copy username"
+                                  >
+                                    <FiCopy className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                              </td>
+                              <td className="px-4 py-3">
+                                <div className="flex items-center space-x-2">
+                                  <Input
+                                    type={showPasswords[index] ? 'text' : 'password'}
+                                    value={credential.password}
+                                    readOnly
+                                    className={`font-mono p-2 h-8 flex-1 ${showPasswords[index] ? 'border border-purple-500' : 'border border-gray-300'} bg-transparent`}
+                                    style={{ fontSize: '0.875rem' }}
+                                  />
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    onClick={() => setShowPasswords(prev => ({ ...prev, [index]: !prev[index] }))}
+                                    className="h-6 w-6 p-0"
+                                    title={showPasswords[index] ? 'Hide password' : 'Show password'}
+                                  >
+                                    {showPasswords[index] ? <FiEyeOff className="w-3 h-3" /> : <FiEye className="w-3 h-3" />}
+                                  </Button>
+                                  <Button
+                                    size="sm"
+                                    variant="ghost"
+                                    onClick={() => navigator.clipboard.writeText(credential.password)}
+                                    className="h-6 w-6 p-0"
+                                    title="Copy password"
+                                  >
+                                    <FiCopy className="w-3 h-3" />
+                                  </Button>
+                                </div>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </CardContent>
+                )}
               </Card>
             </motion.div>
 
@@ -635,14 +739,14 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                         initial={{ x: -20, opacity: 0 }}
                         animate={{ x: 0, opacity: 1 }}
                         className={`p-3 rounded-lg border-l-4 ${update.type === 'success' ? 'border-l-green-500 bg-green-50' :
-                            update.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
-                              'border-l-blue-500 bg-blue-50'
+                          update.type === 'warning' ? 'border-l-yellow-500 bg-yellow-50' :
+                            'border-l-blue-500 bg-blue-50'
                           }`}
                       >
                         <div className="flex items-start space-x-3">
                           <div className={`p-1 rounded-full ${update.type === 'success' ? 'bg-green-100' :
-                              update.type === 'warning' ? 'bg-yellow-100' :
-                                'bg-blue-100'
+                            update.type === 'warning' ? 'bg-yellow-100' :
+                              'bg-blue-100'
                             }`}>
                             {update.type === 'success' ? <FiCheckCircle className="w-4 h-4 text-green-600" /> :
                               update.type === 'warning' ? <FiAlertCircle className="w-4 h-4 text-yellow-600" /> :
@@ -711,12 +815,12 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                           <motion.div
                             key={index}
                             className={`flex items-center justify-between p-3 rounded-lg border ${deliverable.completed
-                                ? deliverable.isPremium
-                                  ? 'bg-green-50 border-yellow-400'
-                                  : 'bg-green-50 border-green-200'
-                                : deliverable.isPremium
-                                  ? 'bg-gray-50 border-yellow-400'
-                                  : 'bg-gray-50 border-gray-200'
+                              ? deliverable.isPremium
+                                ? 'bg-green-50 border-yellow-400'
+                                : 'bg-green-50 border-green-200'
+                              : deliverable.isPremium
+                                ? 'bg-gray-50 border-yellow-400'
+                                : 'bg-gray-50 border-gray-200'
                               }`}
                             initial={{ x: -20, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
@@ -781,8 +885,8 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                           <motion.div
                             key={milestone.id}
                             className={`flex items-center justify-between p-3 rounded-lg border ${milestone.completed
-                                ? 'bg-green-50 border-green-200'
-                                : 'bg-gray-50 border-gray-200'
+                              ? 'bg-green-50 border-green-200'
+                              : 'bg-gray-50 border-gray-200'
                               }`}
                             initial={{ x: -20, opacity: 0 }}
                             animate={{ x: 0, opacity: 1 }}
@@ -1032,9 +1136,14 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                 <CardContent className="space-y-4">
                   <div>
                     <label className="text-sm font-medium text-gray-600">Domain</label>
-                    <div className="flex items-center space-x-2 mt-1">
-                      <span className="font-medium">{progressData.projectDetails.domain}</span>
-                      <FiExternalLink className="w-4 h-4 text-[#95aac9]" />
+                    <div className="flex items-center space-x-2 mt-1 group">
+                      <span
+                        className="font-medium text-[#95aac9] hover:underline cursor-pointer"
+                        onClick={() => window.open(`https://${progressData.projectDetails.domain}`, '_blank')}
+                      >
+                        {progressData.projectDetails.domain}
+                      </span>
+                      <FiExternalLink className="w-4 h-4 text-[#95aac9] group-hover:text-black" />
                     </div>
                   </div>
                   <div>
@@ -1144,8 +1253,8 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                                   <div className="flex items-center gap-2">
                                     <span className="font-medium text-gray-900">{item.description}</span>
                                     <span className={`inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium ${item.status === 'paid' ? 'bg-green-100 text-green-800' :
-                                        item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
-                                          'bg-red-100 text-red-800'
+                                      item.status === 'pending' ? 'bg-yellow-100 text-yellow-800' :
+                                        'bg-red-100 text-red-800'
                                       }`}>
                                       {item.status.charAt(0).toUpperCase() + item.status.slice(1)}
                                     </span>

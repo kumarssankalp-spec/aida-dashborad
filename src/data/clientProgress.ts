@@ -78,6 +78,12 @@ export interface CompletionServiceItem {
   description: string;
 }
 
+export interface Message {
+  message: string;
+  type: 'info' | 'success' | 'warning' | 'error';
+  timeLimit?: boolean;
+}
+
 export interface ClientProgress {
   clientId: string;
   deliverables: DeliverableStatus[];
@@ -92,6 +98,7 @@ export interface ClientProgress {
   liveUpdates: LiveUpdate[];
   credentials: Credential[];
   milestones: Milestone[];
+  messages: Message[];
   paymentTracking: {
     totalAmount: number;
     paidAmount: number;
@@ -347,6 +354,12 @@ export const clientProgressData: Record<string, ClientProgress> = {
         completed: false,
         color: '#F44336'
       }
+    ],
+    messages: [
+      { message: 'Project initialized successfully', type: 'success', timeLimit: true },
+      // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
+      // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
+      { message: 'Payment pending for website development ( 30% remaining ) refer payemnt breakdown.', type: 'error', timeLimit: false }
     ],
     paymentTracking: {
       totalAmount: 50000,
