@@ -20,6 +20,7 @@ import { Textarea } from './ui/textarea';
 import { Badge } from './ui/badge';
 import { ChartContainer, ChartTooltip, ChartTooltipContent } from './ui/chart';
 import { BarChart, Bar, XAxis, YAxis, ResponsiveContainer, PieChart, Pie, Cell } from 'recharts';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from './ui/tabs';
 import { useToast } from '../hooks/use-toast';
 
 interface ClientDashboardProps {
@@ -1346,34 +1347,97 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                   </div>
                 </CardHeader>
                 <CardContent>
-                  <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden mb-3 flex items-center justify-center text-gray-400 text-lg font-semibold">
-                    {progressData.sitePreview.thumbnailUrl ? (
-                      <img
-                        src={progressData.sitePreview.thumbnailUrl}
-                        alt="Site Preview"
-                        className="w-full h-full object-cover"
-                      />
-                    ) : (
-                      <div>No preview available</div>
-                    )}
-                  </div>
-                  {!progressData.sitePreview.isEnabled && (
-                    <div className="text-center p-4 bg-yellow-100 rounded-md text-yellow-800 font-semibold mb-3">
-                      Site is under development. We will notify you when it's live.
-                    </div>
-                  )}
-                  <Button
-                    className={`w-full ${progressData.sitePreview.isEnabled ? 'bg-[#e37335] hover:bg-[#e37335]/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
-                    onClick={() => {
-                      if (progressData.sitePreview.isEnabled && progressData.sitePreview.liveUrl) {
-                        window.open(progressData.sitePreview.liveUrl, '_blank');
-                      }
-                    }}
-                    disabled={!progressData.sitePreview.isEnabled}
-                  >
-                    <FiExternalLink className="w-4 h-4 mr-2" />
-                    View Live Site
-                  </Button>
+                  <Tabs defaultValue="preview" className="w-full">
+                    <TabsList className="grid w-full grid-cols-2">
+                      <TabsTrigger value="preview">Preview</TabsTrigger>
+                      <TabsTrigger value="designs">Selected Designs</TabsTrigger>
+                    </TabsList>
+                    <TabsContent value="preview" className="mt-4">
+                      <div className="aspect-video bg-gray-100 rounded-lg overflow-hidden mb-3 flex items-center justify-center text-gray-400 text-lg font-semibold">
+                        {progressData.sitePreview.thumbnailUrl ? (
+                          <img
+                            src={progressData.sitePreview.thumbnailUrl}
+                            alt="Site Preview"
+                            className="w-full h-full object-cover"
+                          />
+                        ) : (
+                          <div>No preview available</div>
+                        )}
+                      </div>
+                      {!progressData.sitePreview.isEnabled && (
+                        <div className="text-center p-4 bg-yellow-100 rounded-md text-yellow-800 font-semibold mb-3">
+                          Site is under development. We will notify you when it's live.
+                        </div>
+                      )}
+                      <Button
+                        className={`w-full ${progressData.sitePreview.isEnabled ? 'bg-[#e37335] hover:bg-[#e37335]/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
+                        onClick={() => {
+                          if (progressData.sitePreview.isEnabled && progressData.sitePreview.liveUrl) {
+                            window.open(progressData.sitePreview.liveUrl, '_blank');
+                          }
+                        }}
+                        disabled={!progressData.sitePreview.isEnabled}
+                      >
+                        <FiExternalLink className="w-4 h-4 mr-2" />
+                        View Live Site
+                      </Button>
+                    </TabsContent>
+                    <TabsContent value="designs" className="mt-4">
+                      {(() => {
+                        const selectedDesignsData = projectData?.designs.filter(design => projectData.selectedDesigns.includes(design.id)) || [];
+                        if (selectedDesignsData.length === 0) {
+                          return (
+                            <div className="text-center py-8 text-gray-500">
+                              <FiImage className="w-12 h-12 mx-auto mb-4 text-gray-300" />
+                              <p className="text-lg font-medium">No selected designs</p>
+                              <p className="text-sm">Designs will be available once selected.</p>
+                            </div>
+                          );
+                        }
+                        return (
+                          <div className="space-y-3">
+                            {selectedDesignsData.map(design => (
+                              <motion.div
+                                key={design.id}
+                                className="flex items-start space-x-3 p-3 bg-gray-50 rounded-lg border hover:shadow-md transition-all duration-200"
+                                whileHover={{ scale: 1.02 }}
+                              >
+                                <div className="w-12 h-12 bg-gray-200 rounded-lg overflow-hidden flex-shrink-0">
+                                  <img
+                                    src={design.imageUrl}
+                                    alt={design.title}
+                                    className="w-full h-full object-cover"
+                                  />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-start justify-between mb-1">
+                                    <h4 className="font-semibold text-gray-800 text-sm leading-tight">{design.title}</h4>
+                                    {design.isPremium && (
+                                      <Badge variant="outline" className="text-yellow-600 border-yellow-400 ml-2 flex-shrink-0 text-xs">
+                                        Premium
+                                      </Badge>
+                                    )}
+                                  </div>
+                                  <p className="text-xs text-gray-600 mb-2 leading-relaxed line-clamp-2">{design.description}</p>
+                                  {design.link && (
+                                    <Button
+                                      size="sm"
+                                      variant="outline"
+                                      onClick={() => window.open(design.link, '_blank')}
+                                      className="mt-1 h-7 text-xs"
+                                    >
+                                      <FiExternalLink className="w-3 h-3 mr-1" />
+                                      View Design
+                                    </Button>
+                                  )}
+                                </div>
+                              </motion.div>
+                            ))}
+                          </div>
+                        );
+                      })()}
+                    </TabsContent>
+                  </Tabs>
                 </CardContent>
               </Card>
             </motion.div>
