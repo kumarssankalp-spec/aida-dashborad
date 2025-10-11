@@ -440,7 +440,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
     },
     sitePreview: {
       thumbnailUrl: 'https://dashboard.aidacorp.in/assets/stamix/preview.png',
-      liveUrl: 'https://luxepawlour.com',
+      liveUrl: 'https://www.luxepawlour.com',
       isEnabled: true
     },
     completionServices: [
