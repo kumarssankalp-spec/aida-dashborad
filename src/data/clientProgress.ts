@@ -426,9 +426,9 @@ export const clientProgressData: Record<string, ClientProgress> = {
       adminDashboardLink: 'https://hpanel.hostinger.com/'
     },
     sitePreview: {
-      thumbnailUrl: '',
+      thumbnailUrl: 'https://dashboard.aidacorp.in/assets/stamix/preview.png',
       liveUrl: 'https://luxepawlour.com',
-      isEnabled: false
+      isEnabled: true
     },
     completionServices: [
       {
