@@ -253,13 +253,13 @@ export const clientProgressData: Record<string, ClientProgress> = {
             {
         id: 'update-1',
         message: 'The coming soon page has been deployed you can check it at site preview.',
-        timestamp: new Date('2025-10-04T15:00:00'),
+        timestamp: new Date('2025-10-12T24:00:00'),
         type: 'success'
       },
       {
         id: 'update-2',
         message: 'Logos have been confirmed.',
-        timestamp: new Date('2025-10-04T15:00:00'),
+        timestamp: new Date('2025-10-12T19:00:00'),
         type: 'success'
       },
       {
