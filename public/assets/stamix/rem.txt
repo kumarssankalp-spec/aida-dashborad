@@ -1,0 +1,22 @@
+Edit the record
+Type*
+A
+
+Name*
+@
+Points to*
+23.227.38.65
+TTL*
+3600
+
+Edit the record
+Type*
+CNAME
+
+Name*
+www
+Target*
+p0cxk0-yq.myshopify.com
+TTL*
+3600
+
