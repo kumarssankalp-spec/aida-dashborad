@@ -131,7 +131,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { name: 'Admin Panel – intuitive dashboard with full control', completed: false, isPremium: true },
       { name: '25+ Dynamic Website Pages – feature-rich and visually engaging', completed: false },
       { name: '5 Dedicated Admin Backend Pages – manage products, users, and analytics', completed: false, isPremium: true },
-      { name: 'Custom Logo Design – premium multi-format assets for web & print', completed: false, isPremium: true },
+      { name: 'Custom Logo Design – premium multi-format assets for web & print', completed: true, isPremium: true },
       { name: 'Favicon & Brand Icons – all platforms ready', completed: false, isPremium: true },
       { name: '24/7 Support Setup – priority response and troubleshooting', completed: false },
       { name: 'Multiple Categories & Subcategories – fully structured catalog', completed: false },
@@ -250,14 +250,26 @@ export const clientProgressData: Record<string, ClientProgress> = {
       }
     ],
     liveUpdates: [
-      {
+            {
         id: 'update-1',
+        message: 'The coming soon page has been deployed you can check it at site preview.',
+        timestamp: new Date('2025-10-04T15:00:00'),
+        type: 'success'
+      },
+      {
+        id: 'update-2',
+        message: 'Logos have been confirmed.',
+        timestamp: new Date('2025-10-04T15:00:00'),
+        type: 'success'
+      },
+      {
+        id: 'update-7',
         message: 'Created instagram & facebook business page',
         timestamp: new Date('2025-10-06T18:00:00'),
         type: 'success'
       },
       {
-        id: 'update-2',
+        id: 'update-8',
         message: 'Gmail and shopify dashbaords have been set up',
         timestamp: new Date('2025-10-04T15:30:00'),
         type: 'success'
@@ -362,6 +374,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       }
     ],
     messages: [
+      { message: 'YAY 🎊! Your Cming Soon page is live. Visit site preview.', type: 'success', timeLimit: true },
       { message: 'Special request completed successfully', type: 'success', timeLimit: true },
       // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
       // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
@@ -438,7 +451,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       },
       {
         id: 'service-2',
-        title: 'Shopify Backend Dashnoard',
+        title: 'Shopify Backend Dashboard',
         description: '3 Months after the completion.'
       },
       {
