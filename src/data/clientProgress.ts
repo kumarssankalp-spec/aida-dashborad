@@ -375,7 +375,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       }
     ],
     messages: [
-      { message: 'YAY 🎊! Your Cming Soon page is live. Visit site preview.', type: 'success', timeLimit: true },
+      { message: 'YAY 🎊! Your Coming Soon page is live. Visit site preview.', type: 'success', timeLimit: true },
       { message: 'Special request completed successfully', type: 'success', timeLimit: true },
       // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
       // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
