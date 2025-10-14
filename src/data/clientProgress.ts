@@ -114,6 +114,7 @@ export interface ClientProgress {
   sitePreview: {
     thumbnailUrl: string;
     liveUrl?: string;
+    storeUrl?: string;
     isEnabled: boolean;
   };
   completionServices: CompletionServiceItem[];
@@ -441,6 +442,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
     sitePreview: {
       thumbnailUrl: 'https://dashboard.aidacorp.in/assets/stamix/preview.png',
       liveUrl: 'https://www.luxepawlour.com',
+      storeUrl: 'https://p0cxk0-yq.myshopify.com/?_ab=0&_fd=0&_sc=1',
       isEnabled: true
     },
     completionServices: [

@@ -1381,6 +1381,18 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                         <FiExternalLink className="w-4 h-4 mr-2" />
                         View Live Site
                       </Button>
+                      <Button
+                        className={`w-full ${progressData.sitePreview.isEnabled ? 'bg-black hover:bg-black/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
+                        onClick={() => {
+                          if (progressData.sitePreview.isEnabled && progressData.sitePreview.storeUrl) {
+                            window.open(progressData.sitePreview.storeUrl, '_blank');
+                          }
+                        }}
+                        disabled={!progressData.sitePreview.isEnabled}
+                      >
+                        <FiExternalLink className="w-4 h-4 mr-2" />
+                        View Developing Store
+                      </Button>
                     </TabsContent>
                     <TabsContent value="designs" className="mt-4">
                       {(() => {
