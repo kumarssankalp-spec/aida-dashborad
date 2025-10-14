@@ -1382,7 +1382,7 @@ const ClientDashboard: React.FC<ClientDashboardProps> = ({ onLogout }) => {
                         View Live Site
                       </Button>
                       <Button
-                        className={`w-full ${progressData.sitePreview.isEnabled ? 'mt-1 bg-black hover:bg-black/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
+                        className={`w-full ${progressData.sitePreview.isEnabled ? 'mt-2 bg-black hover:bg-black/80' : 'bg-gray-300  text-black cursor-not-allowed'}`}
                         onClick={() => {
                           if (progressData.sitePreview.isEnabled && progressData.sitePreview.storeUrl) {
                             window.open(progressData.sitePreview.storeUrl, '_blank');
