@@ -383,7 +383,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
     ],
     paymentTracking: {
       totalAmount: 50000,
-      paidAmount: 10000,
+      paidAmount: 25000,
       currency: 'INR',
       breakdown: [
         {
@@ -406,7 +406,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
           date: new Date('2025-10-04'),
           amount: 15000,
           description: '2. Initial Project Payment',
-          status: 'pending',
+          status: 'paid',
           showBreakdown: true,
           deliverables: [
             { name: 'Website design and wireframes', amount: 5000, free: false },
