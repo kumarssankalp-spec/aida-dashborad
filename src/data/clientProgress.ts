@@ -250,15 +250,28 @@ export const clientProgressData: Record<string, ClientProgress> = {
         updatedAt: new Date('2025-10-04')
       }
     ],
-    liveUpdates: [
-            {
+    liveUpdates: [        
+      
+      {
         id: 'update-1',
+        message: 'Backend work started',
+        timestamp: new Date('2025-10-19T24:00:00'),
+        type: 'success'
+      },
+      {
+        id: 'update-2',
+        message: 'Theme file has been purchased and deployed',
+        timestamp: new Date('2025-10-19T24:00:00'),
+        type: 'success'
+      },
+            {
+        id: 'update-9',
         message: 'The coming soon page has been deployed you can check it at site preview.',
         timestamp: new Date('2025-10-12T24:00:00'),
         type: 'success'
       },
       {
-        id: 'update-2',
+        id: 'update-10',
         message: 'Logos have been confirmed.',
         timestamp: new Date('2025-10-12T19:00:00'),
         type: 'success'
@@ -379,7 +392,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { message: 'Special request completed successfully', type: 'success', timeLimit: true },
       // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
       // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
-      { message: 'Payment pending for website development ( 30% remaining ) refer payemnt breakdown. Please complete to proceed further.', type: 'error', timeLimit: false }
+      // { message: 'Payment pending for website development ( 30% remaining ) refer payemnt breakdown. Please complete to proceed further.', type: 'error', timeLimit: false }
     ],
     paymentTracking: {
       totalAmount: 50000,
