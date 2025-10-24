@@ -126,25 +126,25 @@ export const clientProgressData: Record<string, ClientProgress> = {
   'client-a': {
     clientId: 'client-a',
     deliverables: [
-      { name: 'Fully Responsive Website – mobile-first, ultra-fast, adaptive', completed: false },
+      { name: 'Fully Responsive Website – mobile-first, ultra-fast, adaptive', completed: true },
       { name: 'E-commerce Store – modern, scalable, and conversion-optimized', completed: false, isPremium: true },
       { name: 'Payment Gateway Integration – Stripe, PayPal, Shopify, UPI India', completed: false, isPremium: true },
-      { name: 'Admin Panel – intuitive dashboard with full control', completed: false, isPremium: true },
+      { name: 'Admin Panel – intuitive dashboard with full control', completed: true, isPremium: true },
       { name: '25+ Dynamic Website Pages – feature-rich and visually engaging', completed: false },
       { name: '5 Dedicated Admin Backend Pages – manage products, users, and analytics', completed: false, isPremium: true },
       { name: 'Custom Logo Design – premium multi-format assets for web & print', completed: true, isPremium: true },
       { name: 'Favicon & Brand Icons – all platforms ready', completed: false, isPremium: true },
       { name: '24/7 Support Setup – priority response and troubleshooting', completed: false },
       { name: 'Multiple Categories & Subcategories – fully structured catalog', completed: false },
-      { name: 'Working Outbound Links – seamless external navigation', completed: false },
+      { name: 'Working Outbound Links – seamless external navigation', completed: true },
       { name: 'Offers & Coupons Dashboard – manage promotions effortlessly', completed: false },
       { name: 'Animation & Motion Effects – modern and engaging interactions', completed: false },
       { name: 'Optimized Site Loading – fast, lightweight, and performant', completed: false },
       { name: 'Advanced SEO – better rankings, sitemap & robots.txt ready', completed: false },
-      { name: 'SEO Dashboard – track, analyze, and optimize visibility', completed: false, isPremium: true },
-      { name: 'Tag Manager Dashboard – campaign tracking & analytics ready', completed: false, isPremium: true },
+      { name: 'SEO Dashboard – track, analyze, and optimize visibility', completed: true, isPremium: true },
+      { name: 'Tag Manager Dashboard – campaign tracking & analytics ready', completed: true, isPremium: true },
       { name: 'Email Services Setup – professional transactional & marketing emails', completed: false, isPremium: true },
-      { name: 'CDN Integration – global content delivery for faster load', completed: false },
+      { name: 'CDN Integration – global content delivery for faster load', completed: true },
       { name: 'Customer Database – secure and structured storage', completed: false },
       { name: 'Error Management & Monitoring – proactive issue handling', completed: false },
       { name: 'Preload & Cache Management – optimized user experience', completed: false },
@@ -154,7 +154,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { name: 'Strict Policies & Fraud Prevention – GDPR, CORS, and security compliance', completed: false },
       { name: 'Domain & DNS Management – SSL certification and protection', completed: false },
       { name: 'Mobile Responsive Generator – auto-adjust content for any device', completed: false },
-      { name: 'Active Admin Account Setup – ready-to-use management access', completed: false },
+      { name: 'Active Admin Account Setup – ready-to-use management access', completed: true },
       { name: 'Secure Third-Party Payment Channels – complete transaction safety', completed: false, isPremium: true },
       { name: 'Client Preferences Recorder – track and personalize experience', completed: false },
       { name: 'Review Management System – customer feedback handling', completed: false },
@@ -166,9 +166,9 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { name: 'Advanced Analytics & Reporting – sales, traffic, customer insights', completed: false },
       { name: 'Live Chat & Customer Support System – instant assistance', completed: false },
       { name: 'Subscription Options – recurring delivery for food & treats', completed: false },
-      { name: 'Secure Data Backups – automated and encrypted', completed: false },
-      { name: 'Accessibility Features – ADA compliant interface', completed: false },
-      { name: 'Sitemap & Robots.txt Auto-Generation – search engine friendly', completed: false }
+      { name: 'Secure Data Backups – automated and encrypted', completed: true },
+      { name: 'Accessibility Features – ADA compliant interface', completed: true },
+      { name: 'Sitemap & Robots.txt Auto-Generation – search engine friendly', completed: true }
     ],
     assets: [
       // {
@@ -351,14 +351,14 @@ export const clientProgressData: Record<string, ClientProgress> = {
         name: 'Project Planning & Design',
         startDate: new Date('2025-10-04'),
         endDate: new Date('2025-10-06'),
-        completed: false,
+        completed: true,
         color: '#4CAF50'
       },
       {
         id: 'milestone-2',
         name: 'Frontend Development',
         startDate: new Date('2025-10-06'),
-        endDate: new Date('2025-10-12'),
+        endDate: new Date('2025-10-26'),
         completed: false,
         color: '#2196F3'
       },
@@ -366,7 +366,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         id: 'milestone-3',
         name: 'Backend Integration',
         startDate: new Date('2025-10-12'),
-        endDate: new Date('2025-10-15'),
+        endDate: new Date('2025-10-27'),
         completed: false,
         color: '#FF9800'
       },
@@ -374,7 +374,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         id: 'milestone-4',
         name: 'E-commerce Features',
         startDate: new Date('2025-10-15'),
-        endDate: new Date('2025-10-17'),
+        endDate: new Date('2025-10-29'),
         completed: false,
         color: '#9C27B0'
       },
@@ -382,7 +382,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         id: 'milestone-5',
         name: 'Testing & Launch',
         startDate: new Date('2025-10-17'),
-        endDate: new Date('2025-10-20'),
+        endDate: new Date('2025-11-01'),
         completed: false,
         color: '#F44336'
       }
@@ -390,6 +390,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
     messages: [
       { message: 'YAY 🎊! Your Coming Soon page is live. Visit site preview.', type: 'success', timeLimit: true },
       { message: 'Special request completed successfully', type: 'success', timeLimit: true },
+      { message: 'The dates of completion have been changed to 1st of the November', type: 'info', timeLimit: true },
       // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
       // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
       // { message: 'Payment pending for website development ( 30% remaining ) refer payemnt breakdown. Please complete to proceed further.', type: 'error', timeLimit: false }
