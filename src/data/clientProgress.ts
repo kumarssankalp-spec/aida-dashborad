@@ -417,7 +417,7 @@ export const clientProgressData: Record<string, ClientProgress> = {
         },
         {
           id: 'payment-2',
-          date: new Date('2025-10-04'),
+          date: new Date('2025-10-17'),
           amount: 15000,
           description: '2. Initial Project Payment',
           status: 'paid',
