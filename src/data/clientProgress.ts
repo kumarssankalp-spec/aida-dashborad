@@ -214,8 +214,8 @@ export const clientProgressData: Record<string, ClientProgress> = {
     ],
     noAssets: false,
     progress: {
-      frontend: { name: 'Frontend Development', percentage: 20, color: '#95aac9' },
-      backend: { name: 'Backend Development', percentage: 30, color: '#d32777' },
+      frontend: { name: 'Frontend Development', percentage: 30, color: '#95aac9' },
+      backend: { name: 'Backend Development', percentage: 40, color: '#d32777' },
       seo: { name: 'SEO Optimization', percentage: 10, color: '#e37335' }
     },
     specialRequests: [
