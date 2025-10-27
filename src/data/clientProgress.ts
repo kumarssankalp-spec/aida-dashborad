@@ -388,8 +388,9 @@ export const clientProgressData: Record<string, ClientProgress> = {
       }
     ],
     messages: [
-      { message: 'YAY 🎊! Your Coming Soon page is live. Visit site preview.', type: 'success', timeLimit: true },
-      { message: 'Special request completed successfully', type: 'success', timeLimit: true },
+      { message: 'New assets have been added. To download see the assets section below. ', type: 'success', timeLimit: true },
+      // { message: 'YAY 🎊! Your Coming Soon page is live. Visit site preview.', type: 'success', timeLimit: true },
+      // { message: 'Special request completed successfully', type: 'success', timeLimit: true },
       { message: 'The dates of completion have been changed to 1st of the November', type: 'info', timeLimit: true },
       // { message: 'Please review the latest design mockups', type: 'info' , timeLimit: true },
       // { message: 'Payment deadline approaching', type: 'warning', timeLimit: true },
