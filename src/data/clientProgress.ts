@@ -171,22 +171,22 @@ export const clientProgressData: Record<string, ClientProgress> = {
       { name: 'Sitemap & Robots.txt Auto-Generation – search engine friendly', completed: true }
     ],
     assets: [
-      // {
-      //   id: 'logo-1',
-      //   name: 'Company Logo.png',
-      //   url: 'https://example.com/logo.png',
-      //   type: 'image',
-      //   size: 1024000,
-      //   uploadedAt: new Date('2024-01-15')
-      // },
-      // {
-      //   id: 'favicon-1',
-      //   name: 'Favicon.ico',
-      //   url: 'https://example.com/favicon.ico',
-      //   type: 'other',
-      //   size: 2048,
-      //   uploadedAt: new Date('2024-01-15')
-      // },
+      {
+        id: 'logo-1',
+        name: 'luxe pawlour.jpg',
+        url: 'https://dashboard.aidacorp.in/assets/stamix/luxepawlour.jpg',
+        type: 'image',
+        size: 628,
+        uploadedAt: new Date('2025-10-27')
+      },
+       {
+        id: 'luxe_pawlour_Flex_(31.2x12_in)',
+        name: 'luxe pawlour Flex 31.2 x 12 in).cdr',
+        url: 'https://dashboard.aidacorp.in/assets/stamix/luxe_pawlour_Flex_(31.2x12_in).cdr',
+         type: 'other',
+         size: 4108,
+        uploadedAt: new Date('2025-10-27')
+       },
       {
         id: 'Udyam_Registration_Certificate',
         name: 'Udyam Registration Certificate.pdf',
